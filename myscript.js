@@ -68,55 +68,39 @@ function changeSign(objButton) {
 }
 
 function add(objButton) {
-	if (currentOperator == "add") {
-		updateScreen();
-		return;
-	}
 	operatorOn = true;
 	currentOperator = "add";
 	if (numberScript != "") {
 		firstNumber = parseFloat(numberScript);
 	}
-	console.log(firstNumber);
+	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
 }
 
 function sub(objButton) {
-	if (currentOperator == "sub") {
-		updateScreen();
-		return;
-	}
 	operatorOn = true;
 	currentOperator = "sub";
 	if (numberScript != "") {
 		firstNumber = parseFloat(numberScript);
 	}
-	console.log(firstNumber);
+	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
 }
 
 function mul(objButton) {
-	if (currentOperator == "mul") {
-		updateScreen();
-		return;
-	}
 	operatorOn = true;
 	currentOperator = "mul"; 
 	if (numberScript != "") {
 		firstNumber = parseFloat(numberScript);
 	}
-	console.log(firstNumber);
+	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
 }
 
 function div(objButton) {
-	if (currentOperator == "div") {
-		updateScreen();
-		return;
-	}
 	operatorOn = true;
 	currentOperator = "div";
 	if (numberScript != "") {
@@ -132,8 +116,8 @@ function finishExpression(objButton) {
 	}
 	else {
 		motivationalQuotes();
-		console.log("the current operator is: " + currentOperator);
-		console.log("the second number is: " + secondNumber);
+		//console.log("the current operator is: " + currentOperator);
+		//console.log("the second number is: " + secondNumber);
 		if (currentOperator == "add") {
 			var ans = firstNumber + secondNumber;
 			firstNumber = ans;
@@ -148,7 +132,6 @@ function finishExpression(objButton) {
 		}
 		else if (currentOperator == "mul") {
 			var ans = firstNumber * secondNumber;
-			console.log(firstNumber * secondNumber);
 			firstNumber = ans;
 			numberScript = ans.toString();
 			updateScreen();
