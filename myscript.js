@@ -1,3 +1,7 @@
+
+// ALL USED IMAGES ARE PUBLIC AND FREE
+
+
 var globalCurrentValue = 0;
 var numberScript = "";
 var operatorOn = false;
