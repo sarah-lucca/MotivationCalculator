@@ -36,20 +36,22 @@ function getValue(objButton) {
 		updateScreen();
 	}
 }
-
-function clearScript(objButton) {
+var buttonClear = document.getElementById("buttonClear");
+buttonClear.onclick = function(objButton) {
 	numberScript = "";
 	operatorOn = false;
 	currentOperator = "";
 	updateScreen();
-}
+};
 
-function percentage(objButton) {
+var buttonPercentage = document.getElementById("buttonPercentage");
+buttonPercentage.onclick = function(objButton) {
 	numberScript = (parseFloat(numberScript) / 100).toString();
 	updateScreen(); 
 }
 
-function changeSign(objButton) {
+var buttonSign = document.getElementById("buttonSign");
+buttonSign.onclick = function(objButton) {
 	if (numberScript == "") {
 		return;
 	}
@@ -67,7 +69,8 @@ function changeSign(objButton) {
 	}
 }
 
-function add(objButton) {
+var buttonAdd = document.getElementById("buttonAdd");
+buttonAdd.onclick = function(objButton) {
 	operatorOn = true;
 	currentOperator = "add";
 	if (numberScript != "") {
@@ -76,9 +79,10 @@ function add(objButton) {
 	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
-}
+};
 
-function sub(objButton) {
+var buttonSub = document.getElementById("buttonSub");
+buttonSub.onclick = function(objButton) {
 	operatorOn = true;
 	currentOperator = "sub";
 	if (numberScript != "") {
@@ -87,9 +91,10 @@ function sub(objButton) {
 	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
-}
+};
 
-function mul(objButton) {
+var buttonMul = document.getElementById("buttonMul");
+buttonMul.onclick = function(objButton) {
 	operatorOn = true;
 	currentOperator = "mul"; 
 	if (numberScript != "") {
@@ -98,9 +103,10 @@ function mul(objButton) {
 	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
-}
+};
 
-function div(objButton) {
+var buttonDiv = document.getElementById("buttonDiv");
+buttonDiv.onclick = function(objButton) {
 	operatorOn = true;
 	currentOperator = "div";
 	if (numberScript != "") {
@@ -108,9 +114,10 @@ function div(objButton) {
 	}
 	numberScript = "";
 	updateScreen();
-}
+};
 
-function finishExpression(objButton) {
+var buttonEqual = document.getElementById("buttonEqual");
+buttonEqual.onclick = function(objButton) {
 	if(!operatorOn) {
 		return;
 	}
@@ -143,7 +150,7 @@ function finishExpression(objButton) {
 			updateScreen();
 		}
 	}
-}
+};
 
 function motivationalQuotes() {
 	globalEqualCount++;
@@ -151,10 +158,31 @@ function motivationalQuotes() {
 		motivationalPicture();
 	}
 	else {
+		$("#motivation").css("width", "400px");
+		$("#motivation").css("height", "100px");
+		$("#motivationDog").attr("src", "");
+		$("#motivationDog").remove();
 		var quoteList = ["Wow you rock", "WE THE BEST -Dj Khaled", "incredible.", 
-		"I love you", "don't give up!", "gold star!!", "hey ur amazing", "DANG ur cool"];
+		"I love you", "don't give up!", "gold star!!", "hey ur amazing", "DANG ur cool",
+		"you amaze me", "einstein loves you", "do it for your dog"];
 		var rand = Math.floor(Math.random() * quoteList.length);
 		var quote = quoteList[rand];
-		document.getElementById("motivation").innerHTML = quote;
+		document.getElementById("caption").innerHTML = "</br>" + quote;
 	}
+}
+
+function motivationalPicture() {
+	var motivationBox = document.getElementById("motivation");
+	var srcList = ["https://cdn.pixabay.com/photo/2016/02/26/16/32/dog-1224267__340.jpg",
+	"https://cdn.pixabay.com/photo/2016/05/02/14/13/dog-1367297__340.jpg",
+	"https://cdn.pixabay.com/photo/2015/11/03/12/58/dog-1020790__340.jpg",
+	"https://cdn.pixabay.com/photo/2014/02/25/11/25/papillon-274183__340.jpg",
+	"https://cdn.pixabay.com/photo/2016/07/15/15/55/dachshund-1519374__340.jpg",
+	"https://cdn.pixabay.com/photo/2016/04/05/21/42/dog-1310545__340.jpg"];
+
+	var rand = Math.floor(Math.random() * srcList.length);
+	$("#motivation").prepend('<img id="motivationDog" style="height:300px; width:450px;" src=""/>');
+	$("#motivationDog").attr("src", srcList[rand]);
+	$("#motivation").css("width", "500px");
+	$("#motivation").css("height", "400px");
 }
