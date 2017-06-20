@@ -1,18 +1,15 @@
-
-// ALL USED IMAGES ARE PUBLIC AND FREE
-
-
-var globalCurrentValue = 0;
 var numberScript = "";
 var operatorOn = false;
 var currentOperator = "";
 var firstNumber = 0;
 var secondNumber = 0;
 var globalEqualCount = 0;
+var finishedExpression = false;
 
 updateScreen();
 
 function updateScreen() {
+	console.log("num screen is: " + numberScript);
 	if (numberScript == "") {
 		document.getElementById('screen').innerHTML = 0;
 	}
@@ -21,25 +18,43 @@ function updateScreen() {
 	}
 }
 
+//FOLLOWING FUNCTIONS ARE FOR CLICKING ON BUTTONS
 function getValue(objButton) {
 	
-	if (!operatorOn){
+	if (!operatorOn) {
 		if (numberScript == "" && objButton.value == 0) {
 			numberScript = "";
 		}
+		// else if (finishedExpression == true) {
+		// 	console.log("finishedExpression");
+		// 	numberScript = objButton.value;
+		// 	finishedExpression = false;
+		// 	firstNumber = objButton.value;
+		// 	updateScreen();
+		// }
 		else {
 			numberScript += objButton.value;
 		}
 
-	updateScreen();
-	}
-	else {
-
-		numberScript += objButton.value;
-		secondNumber = parseFloat(numberScript);
 		updateScreen();
 	}
+	else {
+		// console.log("OPERATOR IS ON!");
+		// if (finishedExpression == true) {
+		// 	numberScript = objButton.value;
+		// 	finishedExpression = false;
+		// 	firstNumber = objButton.value;
+		// 	updateScreen();
+		// }
+		// else {
+			numberScript += objButton.value;
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+		// }
+	}
 }
+
+
 var buttonClear = document.getElementById("buttonClear");
 buttonClear.onclick = function(objButton) {
 	numberScript = "";
@@ -80,7 +95,6 @@ buttonAdd.onclick = function(objButton) {
 	if (numberScript != "") {
 		firstNumber = parseFloat(numberScript);
 	}
-	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
 };
@@ -92,7 +106,6 @@ buttonSub.onclick = function(objButton) {
 	if (numberScript != "") {
 		firstNumber = parseFloat(numberScript);
 	}
-	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
 };
@@ -104,7 +117,6 @@ buttonMul.onclick = function(objButton) {
 	if (numberScript != "") {
 		firstNumber = parseFloat(numberScript);
 	}
-	//console.log(firstNumber);
 	numberScript = "";
 	updateScreen();
 };
@@ -122,13 +134,12 @@ buttonDiv.onclick = function(objButton) {
 
 var buttonEqual = document.getElementById("buttonEqual");
 buttonEqual.onclick = function(objButton) {
+	finishedExpression = true;
 	if(!operatorOn) {
 		return;
 	}
 	else {
 		motivationalQuotes();
-		//console.log("the current operator is: " + currentOperator);
-		//console.log("the second number is: " + secondNumber);
 		if (currentOperator == "add") {
 			var ans = firstNumber + secondNumber;
 			firstNumber = ans;
@@ -153,8 +164,248 @@ buttonEqual.onclick = function(objButton) {
 			numberScript = ans.toString();
 			updateScreen();
 		}
+		console.log("firstnumer is :" + firstNumber)
 	}
 };
+
+//FOLLOWING FUNCTIONS ARE FOR KEYSTROKES
+
+
+$(document).keydown(function(e) {
+	//7
+	if(e.which == 55 || e.which == 103) {
+		if (!operatorOn) {
+			numberScript += "7";
+			updateScreen();
+	}
+		else {
+
+			numberScript += "7";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();		
+		}
+	}
+	//8
+	if(e.which == 56 || e.which == 104) {
+		if (!operatorOn) {
+			numberScript += "8";
+			updateScreen();
+	}
+
+		else {
+			numberScript += "8";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+		}
+	
+	}
+	//9
+	if(e.which == 57 || e.which == 105) {
+		if (!operatorOn) {
+			numberScript += "9";
+			updateScreen();
+	}
+		else {
+
+			numberScript += "9";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+			
+		}
+	}
+	//4
+	if(e.which == 52 || e.which == 100) {
+		if (!operatorOn) {
+			numberScript += "4";
+			updateScreen();
+	}
+
+		else {
+			numberScript += "4";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+			
+		}
+	}
+	//5
+	if(e.which == 53 || e.which == 101) {
+		if (!operatorOn) {
+			numberScript += "5";
+			updateScreen();
+		}
+		else {
+
+			numberScript += "5";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+			
+		}
+	}
+	//6
+	if(e.which == 54 || e.which == 102) {
+		if (!operatorOn) {
+			numberScript += "6";
+			updateScreen();
+}
+
+		else {
+			numberScript += "6";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+		}
+		
+	}
+	//1
+	if(e.which == 49 || e.which == 97) {
+		if (!operatorOn) {
+			numberScript += "1";
+			updateScreen();
+	}
+		else {
+			numberScript += "1";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+			}
+		
+	}
+	//2
+	if(e.which == 50 || e.which == 98) {
+		if (!operatorOn) {
+			numberScript += "2";
+			updateScreen();
+	}
+
+		else {
+			numberScript += "2";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+			}
+		
+	}
+	//3
+	if(e.which == 51 || e.which == 99) {
+		if (!operatorOn) {
+			numberScript += "3";
+			updateScreen();
+
+	}
+		else {
+			numberScript += "3";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+		}
+		
+	}
+	//0
+	if(e.which == 48 || e.which == 96) {
+		if (!operatorOn) {
+			if (numberScript == "") 
+			numberScript = "";		
+		
+	}
+		
+		else {
+			numberScript += "0";
+			secondNumber = parseFloat(numberScript);
+			updateScreen();
+			
+		}
+	}
+	//.
+	if(e.which == 190 || e.which == 110) {
+		if (!operatorOn) {
+			numberScript += ".";
+			console.log(numberScript);
+			updateScreen();
+		}
+		else {
+		numberScript += ".";
+		secondNumber = parseFloat(numberScript);
+		updateScreen();
+		}
+	}
+	//+
+	if(e.which == 107) {
+		operatorOn = true;
+		currentOperator = "add";
+		if (numberScript != "") {
+			firstNumber = parseFloat(numberScript);
+		}
+		numberScript = "";
+		updateScreen();
+	}
+	//-
+	if(e.which == 109) {
+		operatorOn = true;
+		currentOperator = "sub";
+		if (numberScript != "") {
+			firstNumber = parseFloat(numberScript);
+		}
+		numberScript = "";
+		updateScreen();
+	}
+	//*
+	if(e.which == 106) {
+		operatorOn = true;
+		currentOperator = "mul";
+		if (numberScript != "") {
+			firstNumber = parseFloat(numberScript);
+		}
+		numberScript = "";
+		updateScreen();
+	}
+	//÷
+	if(e.which == 111) {
+		operatorOn = true;
+		currentOperator = "div";
+		if (numberScript != "") {
+			firstNumber = parseFloat(numberScript);
+		}
+		numberScript = "";
+		updateScreen();
+	}
+	//=
+	if(e.which == 13 || e.which == 187) {
+		finishedExpression = true;
+		if(!operatorOn) {
+			return;
+		}
+		else {
+			motivationalQuotes();
+			if (currentOperator == "add") {
+				var ans = firstNumber + secondNumber;
+				firstNumber = ans;
+				numberScript = ans.toString();
+				updateScreen();
+			}
+			else if (currentOperator == "sub") {
+				var ans = firstNumber - secondNumber;
+				firstNumber = ans;
+				numberScript = ans.toString();
+				updateScreen();
+			}
+			else if (currentOperator == "mul") {
+				var ans = firstNumber * secondNumber;
+				firstNumber = ans;
+				numberScript = ans.toString();
+				updateScreen();
+			}
+			else if (currentOperator == "div") {
+				var ans = firstNumber / secondNumber;
+				firstNumber = ans;
+				numberScript = ans.toString();
+				updateScreen();
+			}
+		}
+	}
+});
+	
+
+
+
+
+
+
 
 function motivationalQuotes() {
 	globalEqualCount++;
